@@ -1,4 +1,4 @@
-import { SHA256 as sha256 } from "crypto-js";
+import { createHash } from "crypto";
 // We import our prisma client
 import prisma from "../lib/prisma";
 // Prisma will help handle and catch errors
@@ -13,9 +13,11 @@ export default async function handle(req, res) {
         return res.status(405).json({ message: "Method Not allowed" });
     }
 }
-// We hash the user entered password using crypto.js
-export const hashPassword = (string) => {
-    return sha256(string).toString();
+// Function to hash the user password using Node.js built-in crypto module
+export const hashPassword = (password) => {
+    const hash = createHash("sha256");
+    hash.update(password);
+    return hash.digest("hex");
 };
 // function to create user in our database
 async function createUserHandler(req, res) {
