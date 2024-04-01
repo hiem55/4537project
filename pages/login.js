@@ -9,7 +9,7 @@ function LoginPage() {
     const [error, setError] = useState("");
     const [emailInPutError, setEmailInputError] = useState(false);
     const [passwordInPutError, setPasswordInputError] = useState(false);
-    const [isLoading, setIsLoading] = useState(false); nextauth
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         validate();
